@@ -11,6 +11,7 @@ import padlock from '../../assets/padlock.png'
 export default function Login() {
 
     const [userName, setUserName] = useState('');
+    const [fullName, setFullName] = useState('');
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
@@ -21,15 +22,17 @@ export default function Login() {
         const data = {
             userName,
             password,
+            fullName,
         };
 
         try {
             const response = await api.post('api/auth/v1/signin', data);
-
+            localStorage.setItem('fullName', fullName);
             localStorage.setItem('userName', userName);
             localStorage.setItem('accessToken', response.data.accessToken);
             localStorage.setItem('refreshToken', response.data.refreshToken);
-
+            //alert(fullName);
+            //alert(userName);
             navigate('/books');
             
         } catch (error) {

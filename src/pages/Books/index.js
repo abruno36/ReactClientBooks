@@ -29,7 +29,7 @@ export default function Books(){
     }, [accessToken]);
 
     async function fetchMoreBooks() {
-        const response = await api.get(`api/Book/v1/asc/6/${page}`, authorization);
+        const response = await api.get(`api/Book/v1/asc/4/${page}`, authorization);
         setBooks([ ...books, ...response.data.list]);
         setPage(page + 1);
     }
